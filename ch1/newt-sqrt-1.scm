@@ -1,0 +1,12 @@
+(define (sqrt x)
+    (define (square y) (* y y))
+    (define (avg a b) (/ (+ a b) 2))
+    (define (good-guess? guess)
+      (< (abs (- (square guess) x)) 0.00001))
+    (define (better-guess guess)
+      (avg guess (/ x guess)))
+    (define (sqrt-iter guess)
+      (if (good-guess? guess)
+          guess
+          (sqrt-iter (better-guess guess))))
+    (sqrt-iter 1.0))
